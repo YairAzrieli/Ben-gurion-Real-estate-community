@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,7 +20,8 @@
       color: #000000;
       padding: 20px;
     }
-nav {
+
+    nav {
       background-color: #fa9d29;
       color: #fff;
       padding: 10px;
@@ -32,6 +34,7 @@ nav {
       padding: 10px;
       margin: 0 10px;
     }
+
     section {
       padding: 20px;
     }
@@ -41,7 +44,8 @@ nav {
       margin: 10px 0;
     }
 
-    select, input {
+    select,
+    input {
       padding: 10px;
       margin-top: 5px;
       width: 100%;
@@ -59,23 +63,25 @@ nav {
     outcome {
       font-weight: bold;
       margin-top: 20px;
+      display: block; /* Ensure the outcome is displayed as a block element */
     }
   </style>
 </head>
+
 <body>
 
   <header>
     <h1>Real Estate Investor Quiz</h1>
     <p>Answer the following questions to find out which type of real estate investor you are.</p>
   </header>
-  
+
   <nav>
     <a href="https://www.facebook.com/profile.php?id=100066831075022">Facebook</a>
     <a href="https://www.linkedin.com/company/84473948/admin/feed/posts/">LinkedIn</a>
-    <a href="https://yairazrieli.github.io/Ben-gurion-Real-estate-community/index"> Home</a>
+    <a href="https://yairazrieli.github.io/Ben-gurion-Real-estate-community/index">Home</a>
     <a href="https://yairazrieli.github.io/Ben-gurion-Real-estate-community/team">About the team</a>
   </nav>
-  
+
   <section>
     <label for="risk">1. Your tolerance towards risk (1 - low, 5 - high):</label>
     <select id="risk">
@@ -95,7 +101,7 @@ nav {
       <option value="5">5</option>
     </select>
 
-    <label for="handsFull">3. Do you like the idea of getting your hands full of work for extra money?</label>
+    <label for="handsFull">3. Are you willing to do hands-on work for extra income in real estate, like renovations or property management?</label>
     <select id="handsFull">
       <option value="yes">Yes</option>
       <option value="no">No</option>
@@ -115,22 +121,38 @@ nav {
 
       let outcome = "";
 
-      
       if (risk >= 4 && capital >= 4 && handsFull === "yes") {
-        outcome = "Multifamily Investment";;
+        outcome = "Multifamily Investment";
       } else if (capital <= 3 && handsFull === "no") {
         outcome = "REIT Investment";
       } else if (risk >= 4 && handsFull === "yes") {
-        outcome = "Real Estate Flipping investment ";
+        outcome = "Real Estate Flipping Investment";
       } else if (capital >= 4 && (risk < 4 || handsFull === "no")) {
         outcome = "Single House Investment";
       } else {
         outcome = "Single House Investment";
       }
 
-     resultElement.innerText = `Based on your answers, you are recommended for: 🥁🥁🥁 ${outcome}`; 
+      resultElement.innerHTML = `Based on your answers, you are recommended for: 🥁🥁🥁 <a href="${getOutcomeLink(outcome)}">${outcome}</a>`;
+    }
+
+    // Function to get the appropriate link based on the outcome
+    function getOutcomeLink(outcome) {
+      switch (outcome) {
+        case "Multifamily Investment":
+          return "https://yairazrieli.github.io/Ben-gurion-Real-estate-community/multifamilyarticle";
+        case "REIT Investment":
+          return "https://yairazrieli.github.io/Ben-gurion-Real-estate-community/reitarticle";
+        case "Real Estate Flipping Investment":
+          return "https://yairazrieli.github.io/Ben-gurion-Real-estate-community/flippingarticle";
+        case "Single House Investment":
+          return "https://yairazrieli.github.io/Ben-gurion-Real-estate-community/singlehousearticale";
+        default:
+          return "https://yairazrieli.github.io/Ben-gurion-Real-estate-community/singlehousearticale";
+      }
     }
   </script>
 
 </body>
+
 </html>
